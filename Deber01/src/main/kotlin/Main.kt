@@ -53,7 +53,7 @@ fun main() {
 
 }
 
-fun escribirArchivos(nombreArchivo: String) {
+fun escribirArchivosTest(nombreArchivo: String) {
     val writer = PrintWriter(nombreArchivo)
     writer.append("Texto" + "\n")
     writer.append("Texto2" + "\n")
@@ -65,25 +65,26 @@ fun leerArchivos(nombreArchivo: String) {
     file.forEachLine { println(it) }
 }
 
-fun actualizarArchivos(nombreArchivo: String, indice: Int, busqueda: String, cambio: String) {
-    val detallesAutor = ArrayList<MutableList<String>>()
-    File(nombreArchivo).forEachLine { detallesAutor.add(it.split(";") as MutableList<String>) }//Transformarmos el archivo en una lista
+fun actualizarAutor(nombreArchivo: String, indice: Int, busqueda: String, cambio: String) {
+    val detallesAutor = convertirArchivoEnList(nombreArchivo)
     detallesAutor.forEach { if (it[0].equals(busqueda, true)) it[indice] = cambio }
-    println(detallesAutor)
-    val writer = PrintWriter(nombreArchivo)
-    detallesAutor.forEach { itList ->
-        itList.forEach {
-            if (it == itList[itList.size - 1]) writer.append("$it\n") else writer.append("$it;")
-        }
-    }
-    writer.close()
+    escribirArchivo(nombreArchivo,detallesAutor)
 }
 
 fun eliminarAutor(nombreArchivo: String, busqueda: String) {
-    val detallesAutor = ArrayList<MutableList<String>>()
+    var detallesAutor = convertirArchivoEnList(nombreArchivo)
+    detallesAutor = detallesAutor.filter { !(it[0].equals(busqueda, true)) } as ArrayList<MutableList<String>>
+    escribirArchivo(nombreArchivo,detallesAutor)
+
+}
+
+fun convertirArchivoEnList(nombreArchivo: String): ArrayList<MutableList<String>>{
+    var detallesAutor = ArrayList<MutableList<String>>()
     File(nombreArchivo).forEachLine { detallesAutor.add(it.split(";") as MutableList<String>) }//Transformarmos el archivo en una lista
-    println(detallesAutor.filter { !(it[0].equals(busqueda, true)) })
-    println(detallesAutor)
+    return detallesAutor
+}
+
+fun escribirArchivo(nombreArchivo: String ,detallesAutor: ArrayList<MutableList<String>> ){
     val writer = PrintWriter(nombreArchivo)
     detallesAutor.forEach { itList ->
         itList.forEach {
