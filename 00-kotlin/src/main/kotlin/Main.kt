@@ -153,9 +153,7 @@ fun main() {
 //FUNCIONES
 
 //Unit es el void de Kotlin
-fun imprimirNombre(nombre: String): Unit {
-    println("Nombre: ${nombre}")
-}
+
 
                                                                 //nullable
 //Parámetro        requerido    , opcional (defecto),( al terminar en  "?" puede ser nula)
