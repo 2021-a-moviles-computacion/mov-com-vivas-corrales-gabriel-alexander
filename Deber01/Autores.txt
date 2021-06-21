@@ -1,5 +1,4 @@
-juan;sad;Sun Oct 10 00:00:00 COT 2010;3
-dali;Ecuatoriana;Sun Oct 10 00:00:00 COT 2145;3
-marco;lojano;Mon Aug 08 00:00:00 COT 1457;4
-tua;cujs;Wed Jan 18 00:00:00 COT 4575;2
-lucho;asda;Mon Aug 08 00:00:00 COT 4788;2
+juan||sad||Sun Oct 10 00:00:00 COT 2010||3
+marco||lojano||Mon Aug 08 00:00:00 COT 1457||4
+lucho||peruano||Mon Aug 08 00:00:00 COT 4788||2
+gabo||colombiano||Fri Oct 10 00:00:00 COT 1980||5
