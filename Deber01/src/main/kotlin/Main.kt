@@ -39,19 +39,15 @@ fun convertirArchivoEnList(nombreArchivo: String): ArrayList<MutableList<String>
     return detallesAutor
 }
 
-
 fun buscarRegistro(nombreArchivo: String, busqueda: String): Boolean {
     val registros = convertirArchivoEnList(nombreArchivo)
-    return registros.filter { it[0].equals(busqueda, ignoreCase = true) }.isNotEmpty()
+    return registros.any { it[0].equals(busqueda, ignoreCase = true) }
 }
-
 
 fun escribirArchivo(nombreArchivo: String, detallesAutor: ArrayList<MutableList<String>>) {
     val writer = PrintWriter(nombreArchivo)
     detallesAutor.forEach { itList ->
-        itList.forEach {
-            if (it == itList[itList.size - 1]) writer.append("$it\n") else writer.append("$it||")
-        }
+        itList.forEach { if (it == itList[itList.size - 1]) writer.append("$it\n") else writer.append("$it||") }
     }
     writer.close()
 }
@@ -71,44 +67,51 @@ fun registrarAutor(entidad1: String) {
     val date = ingresarDate()
     println("Numero libros publicados:")
     val numLibros = validarEntero()
+    println(
+        "Occiso:\n" +
+                "1. Sí\n" +
+                "2. No\n" +
+                "Seleccione:"
+    )
+    val occiso = validarBooleano()
     //Verificamos si el autor no ha sido registrado previamente
     if (!buscarRegistro(entidad1, autor)) {
         //Guardamos en el archivo
-        File(entidad1).appendText("$autor$separador$nacionalidad$separador$date$separador$numLibros$saltoLínea")
+        File(entidad1).appendText("$autor$separador$nacionalidad$separador$date$separador$numLibros$separador$occiso$saltoLínea")
         println("Autor registrado exitósamente")
     } else {
         println("El autor ya está registrado")
     }
 }
 
-fun registrarLibro(entidad1: String,entidad2: String) {
+fun registrarLibro(entidad1: String, entidad2: String) {
     val separador = "||"
     val saltoLínea = "\n"
     println("Ingrese el nombre del libro:")
     val libro = validarTexto()
     println("Ingrese Autor:")
     val autor = validarTexto()
-    if (!buscarRegistro(entidad1, autor)){
+    if (!buscarRegistro(entidad1, autor)) {
         println(
             "Autor no registrado, desea registrarlo?\n" +
                     "1.Sí\n" +
                     "2.No,Cancelar"
         )
-    when (validarEntero()) {
-        1 -> {
-            registrarAutor(entidad1)
+        when (validarEntero()) {
+            1 -> {
+                registrarAutor(entidad1)
+            }
+            2 -> {
+                println("Cancelando registro")
+                menu(entidad1, entidad2)
+            }
+            else -> {
+                println("Opción no válida, registre nuevamente")
+                registrarLibro(entidad1, entidad2)
+            }
         }
-        2 -> {
-            println("Cancelando registro")
-            menu(entidad1,entidad2)
-        }
-        else -> {
-            println("Opción no válida, registre nuevamente")
-            registrarLibro(entidad1,entidad2)
-        }
-    }
 
-   }
+    }
     println("Numero de páginas:")
     val numPag = validarEntero()
     println("Año publicación:")
@@ -172,12 +175,15 @@ fun ingresoPorTeclado(): Scanner { //Ingreso teclado
 }
 
 //Verificación si el String ingresado es numérico
-fun validarEntero(limite: Int = 10000000): Int {
+fun validarEntero(limite: Int = 10000): Int {
     return try {
         val num = ingresoPorTeclado().nextLine().toInt() //Verifica número entero
-        if (num in 1 until limite){  num } else {
+        if (num in 1 until limite) {
+            num
+        } else {
             println("Ingrese nuevamente")
-            validarEntero(limite)}
+            validarEntero(limite)
+        }
     } catch (e: java.lang.Exception) {
         println("Ingrese un valor entero mayor a cero")
         validarEntero()
@@ -262,6 +268,15 @@ fun menu(entidad1: String, entidad2: String) {
                                 println("Numero libros publicados:")
                                 cambio = validarEntero().toString()
                             }
+                            5-> {
+                                println(
+                                    "Occiso:\n" +
+                                            "1. Sí\n" +
+                                            "2. No\n" +
+                                            "Seleccione:"
+                                )
+                                cambio = validarBooleano().toString()
+                            }
                             else -> {
                                 println("Opción no válida")
                                 menu(entidad1, entidad2)
@@ -272,7 +287,7 @@ fun menu(entidad1: String, entidad2: String) {
                         menu(entidad1, entidad2)
                     } else {
                         println("Autor no registrado")
-                        menu(entidad1,entidad2)
+                        menu(entidad1, entidad2)
                     }
 
                 }
@@ -310,13 +325,13 @@ fun menu(entidad1: String, entidad2: String) {
             )
             when (validarEntero()) {
                 1 -> {
-                    registrarLibro(entidad1,entidad2)
+                    registrarLibro(entidad1, entidad2)
                     menu(entidad1, entidad2)
                 }
                 2 -> {
                     println("Ingrese nombre del libro:")
                     val libro = validarTexto()
-                    if (buscarRegistro(entidad2,libro)) {
+                    if (buscarRegistro(entidad2, libro)) {
                         println(
                             "1.Título\n" +
                                     "2.Autor\n" +
@@ -335,7 +350,7 @@ fun menu(entidad1: String, entidad2: String) {
                             2 -> {
                                 println("Ingrese Autor:")
                                 cambio = validarTexto()
-                                if (!buscarRegistro(entidad1, cambio)){
+                                if (!buscarRegistro(entidad1, cambio)) {
                                     println(
                                         "Autor no registrado, desea registrarlo?\n" +
                                                 "1.Sí\n" +
@@ -347,11 +362,11 @@ fun menu(entidad1: String, entidad2: String) {
                                         }
                                         2 -> {
                                             println("Cancelando registro")
-                                            menu(entidad1,entidad2)
+                                            menu(entidad1, entidad2)
                                         }
                                         else -> {
                                             println("Opción no válida")
-                                            menu(entidad1,entidad2)
+                                            menu(entidad1, entidad2)
                                         }
                                     }
 
@@ -384,11 +399,11 @@ fun menu(entidad1: String, entidad2: String) {
                                 menu(entidad1, entidad2)
                             }
                         }
-                        actualizarArchivo(entidad2, indice - 1,libro, cambio)
+                        actualizarArchivo(entidad2, indice - 1, libro, cambio)
                         menu(entidad1, entidad2)
                     } else {
                         println("Libro no registrado")
-                        menu(entidad1,entidad2)
+                        menu(entidad1, entidad2)
                     }
 
                 }
@@ -406,7 +421,7 @@ fun menu(entidad1: String, entidad2: String) {
                 }
                 4 -> {
                     println("-------------------------------------------------------------------------")
-                    println("Título||Autor||Num.Pag||Año public||Precio")
+                    println("Título||Autor||Num.Pag||Año publ.||Disponible||Precio")
                     leerArchivos(entidad2)
                     menu(entidad1, entidad2)
                 }
