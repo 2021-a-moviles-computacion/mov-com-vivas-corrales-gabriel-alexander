@@ -1,4 +1,1 @@
-colera||$||3||1254||14.5
-hola||gabo||23||2014||14.5
-kosad||kiro||4||1457||14.5
-asd||iaoa||4||2||20.4
+kristo||carlos||4||5||false||44.5
