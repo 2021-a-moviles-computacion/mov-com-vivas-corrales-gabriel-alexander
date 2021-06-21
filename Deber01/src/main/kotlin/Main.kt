@@ -125,7 +125,7 @@ fun registrarLibro(entidad1: String,entidad2: String) {
     //Verificamos si el libro no ha sido registrado previamente
     if (!buscarRegistro(entidad2, libro)) {
         //Guardamos en el archivo
-        File(entidad2).appendText("$libro$separador$autor$separador$numPag$separador$año$separador$precio$saltoLínea")
+        File(entidad2).appendText("$libro$separador$autor$separador$numPag$separador$año$separador$disponible$separador$precio$saltoLínea")
         println("Libro registrado exitósamente")
     } else {
         println("El libro ya está registrado")
@@ -198,11 +198,11 @@ fun validarDouble(): Double {
 
 fun validarTexto(): String {
     val ingreso = ingresoPorTeclado().nextLine()
-    if (ingreso.matches("^[\\p{L} .'-]+$".toRegex())) {
-        return ingreso
+    return if (ingreso.matches("^[\\p{L} .'-]+$".toRegex())) {
+        ingreso
     } else {
         println("Ingrese solo texto")
-        return validarTexto()
+        validarTexto()
     }
 }
 
@@ -267,6 +267,7 @@ fun menu(entidad1: String, entidad2: String) {
                                 menu(entidad1, entidad2)
                             }
                         }
+
                         actualizarArchivo(entidad1, indice - 1, autor, cambio)
                         menu(entidad1, entidad2)
                     } else {
@@ -281,6 +282,7 @@ fun menu(entidad1: String, entidad2: String) {
                     if (buscarRegistro(entidad1, autor)) {
                         eliminarRegistro(entidad1, autor)
                         println("Autor eliminado del registro exitósamente")
+                        menu(entidad1, entidad2)
                     } else {
                         println("Autor no registrado")
                         menu(entidad1, entidad2)
@@ -332,8 +334,8 @@ fun menu(entidad1: String, entidad2: String) {
                             }
                             2 -> {
                                 println("Ingrese Autor:")
-                                val autor = validarTexto()
-                                if (!buscarRegistro(entidad1, autor)){
+                                cambio = validarTexto()
+                                if (!buscarRegistro(entidad1, cambio)){
                                     println(
                                         "Autor no registrado, desea registrarlo?\n" +
                                                 "1.Sí\n" +
@@ -382,7 +384,7 @@ fun menu(entidad1: String, entidad2: String) {
                                 menu(entidad1, entidad2)
                             }
                         }
-                        actualizarArchivo(entidad2, indice - 1, libro, cambio)
+                        actualizarArchivo(entidad2, indice - 1,libro, cambio)
                         menu(entidad1, entidad2)
                     } else {
                         println("Libro no registrado")
@@ -396,6 +398,7 @@ fun menu(entidad1: String, entidad2: String) {
                     if (buscarRegistro(entidad2, libro)) {
                         eliminarRegistro(entidad2, libro)
                         println("Libro eliminado del registro exitósamente")
+                        menu(entidad1, entidad2)
                     } else {
                         println("Libro no registrado")
                         menu(entidad1, entidad2)

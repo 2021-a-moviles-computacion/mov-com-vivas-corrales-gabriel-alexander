@@ -3,5 +3,5 @@ marco||lojano||Mon Aug 08 00:00:00 COT 1457||4
 lucho||peruano||Mon Aug 08 00:00:00 COT 4788||2
 gabo||colombiano||Fri Oct 10 00:00:00 COT 1980||5
 kiro||venezonlano||Sun Feb 02 00:00:00 COT 2014||3
-asd||sad||Sun Oct 10 00:00:00 COT 2100||4
 luisa||sad||Wed Feb 02 00:00:00 COT 2000||2
+daniela||china||Sun Oct 10 00:00:00 COT 2010||3
