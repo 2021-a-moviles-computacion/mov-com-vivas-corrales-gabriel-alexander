@@ -1,1 +1,5 @@
-juadsa||kira||3||2000||false||14.2
+cien años de soledad||Gabriel Marquez||250||1965||true||10.5
+Metamorfosis||Franz Kafka||125||1915||false||9.85
+Harry Potter||J.K Rowling||845||1998||true||25.45
+Don Quijote de la Mancha||Miguel de Cervantes||450||1947||true||12.5
+Alquimista||Paulo Coelho||235||1988||true||12.6

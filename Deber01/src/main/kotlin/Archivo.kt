@@ -14,6 +14,12 @@ class Archivo(val nombreArchivo: String) {
         println("-------------------------------------------------------------------------")
     }
 
+    fun convertirArchivoEnList(): ArrayList<MutableList<String>> {
+        var detallesAutor = ArrayList<MutableList<String>>()
+        File(nombreArchivo).forEachLine { detallesAutor.add(it.split("||") as MutableList<String>) }//Transformarmos el archivo en una lista
+        return detallesAutor
+    }
+
     fun actualizarArchivo(indice: Int, busqueda: String, cambio: String) {
         val registro = convertirArchivoEnList()
         registro.forEach { if (it[0].equals(busqueda, true)) it[indice] = cambio }
@@ -24,12 +30,6 @@ class Archivo(val nombreArchivo: String) {
         var registro = convertirArchivoEnList()
         registro = registro.filter { !(it[0].equals(busqueda, true)) } as ArrayList<MutableList<String>>
         reescribirArchivo(registro)
-    }
-
-    fun convertirArchivoEnList(): ArrayList<MutableList<String>> {
-        var detallesAutor = ArrayList<MutableList<String>>()
-        File(nombreArchivo).forEachLine { detallesAutor.add(it.split("||") as MutableList<String>) }//Transformarmos el archivo en una lista
-        return detallesAutor
     }
 
     fun buscarRegistro(busqueda: String): Boolean {
