@@ -26,6 +26,7 @@ fun menu(archivo1: Archivo, archivo2: Archivo) {
                         "2. Actualizar datos de un autor\n" +
                         "3. Eliminar autor\n" +
                         "4. Ver Registro\n" +
+                        "5. Regresar\n" +
                         "Seleccione:"
             )
             when (validarEntero()) {
@@ -105,10 +106,11 @@ fun menu(archivo1: Archivo, archivo2: Archivo) {
                 }
                 4 -> {
                     println("-------------------------------------------------------------------------")
-                    println("Nombre||Nacionalidad||Fecha Nacimiento||Lib.publicados")
+                    println("Nombre||Nacionalidad||Fecha Nacimiento||Lib.publicados||Occiso")
                     archivo1.leerArchivos()
                     menu(archivo1, archivo2)
                 }
+                5 -> { menu(archivo1, archivo2)}
                 else -> {
                     println("Opción no válida")
                     menu(archivo1, archivo2)
@@ -121,6 +123,7 @@ fun menu(archivo1: Archivo, archivo2: Archivo) {
                         "2. Actualizar datos de un libro\n" +
                         "3. Eliminar libro\n" +
                         "4. Ver Registro\n" +
+                        "5. Regresar\n" +
                         "Seleccione:"
             )
             when (validarEntero()) {
@@ -229,6 +232,7 @@ fun menu(archivo1: Archivo, archivo2: Archivo) {
                     archivo2.leerArchivos()
                     menu(archivo1, archivo2)
                 }
+                5 -> { menu(archivo1, archivo2)}
                 else -> {
                     println("Opción no válida")
                     menu(archivo1, archivo2)
@@ -284,8 +288,7 @@ fun ingresoPorTeclado(): Scanner { //Ingreso teclado
     return Scanner(System.`in`)
 }
 
-//Verificación si el String ingresado es numérico
-fun validarEntero(limite: Int = 10000): Int {
+fun validarEntero(limite: Int = 1000): Int {
     return try {
         val num = ingresoPorTeclado().nextLine().toInt() //Verifica número entero
         if (num in 1 until limite) {
@@ -301,7 +304,6 @@ fun validarEntero(limite: Int = 10000): Int {
 
 }
 
-//Verificación si el String ingresado es double
 fun validarDouble(): Double {
     return try {
         val num = ingresoPorTeclado().nextLine().toDouble() //Verifica número double

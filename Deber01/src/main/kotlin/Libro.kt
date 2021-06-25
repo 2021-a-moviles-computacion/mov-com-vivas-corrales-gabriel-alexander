@@ -1,6 +1,6 @@
 class Libro(archivo1: Archivo, archivo2: Archivo) {
     val separador = "||"
-    val saltoLínea = "\n"
+    val saltoLinea = "\n"
     val libro: String
     val autor: String
     val numPag: Int
@@ -54,7 +54,7 @@ class Libro(archivo1: Archivo, archivo2: Archivo) {
         //Verificamos si el libro no ha sido registrado previamente
         if (!archivo2.buscarRegistro(libro)) {
             //Guardamos en el archivo
-            archivo2.escritorArchivo("$libro$separador$autor$separador$numPag$separador$año$separador$disponible$separador$precio$saltoLínea")
+            archivo2.escritorArchivo("$libro$separador$autor$separador$numPag$separador$año$separador$disponible$separador$precio$saltoLinea")
             println("Libro registrado exitósamente")
         } else {
             println("El libro ya está registrado")
