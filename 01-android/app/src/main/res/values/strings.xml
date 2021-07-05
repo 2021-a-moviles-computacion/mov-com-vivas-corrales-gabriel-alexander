@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">moviles-comp-2021-p1</string>
     <string name="hola_mundo">HOLA MUNDO </string>
+    <string-array name="string_array_opciones_dialogo">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>

@@ -3,10 +3,11 @@ package com.example.moviles_comp_2021_p1
 import android.os.Parcel
 import android.os.Parcelable
 
-class BEntrenador (val nombre: String?, val descripcion: String?) : Parcelable{
+class BEntrenador (val nombre: String?, val descripcion: String?, val liga: DLiga?,) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readParcelable(DLiga::class.java.classLoader)//Lee el parcelable de la liga
     ) {
     }
 
@@ -18,6 +19,8 @@ class BEntrenador (val nombre: String?, val descripcion: String?) : Parcelable{
 //       }
         parcel?.writeString(nombre)
         parcel?.writeString(descripcion)
+
+        parcel?.writeParcelable(liga,flags)
         //TODO("Not yet implemented")
     }
 
