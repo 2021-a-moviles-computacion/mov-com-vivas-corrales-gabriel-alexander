@@ -63,4 +63,14 @@
         app:layout_constraintStart_toStartOf="@+id/btn_ir_intent"
         app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent" />
 
+    <Button
+        android:id="@+id/btn_BDD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:text="BASE"
+        app:layout_constraintEnd_toEndOf="@+id/btn_ir_intent_implicito"
+        app:layout_constraintStart_toStartOf="@+id/btn_ir_intent_implicito"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ir_intent_implicito" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

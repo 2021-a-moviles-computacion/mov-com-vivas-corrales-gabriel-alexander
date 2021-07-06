@@ -18,9 +18,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+//        if (BBaseDatos.TablaUsuario !=null){
+//            BBaseDatos.TablaUsuario.consultarUsuarioPorId()
+//
+//        }
         val botonIrACicloVida = findViewById<Button>(R.id.btn_ciclo_vida)
         val botonIrListView = findViewById<Button>(R.id.btn_ir_list_view)
         val botonIrIntent = findViewById<Button>(R.id.btn_ir_intent)
+        val botonIrBASE = findViewById<Button>(R.id.btn_BDD)
+
+        botonIrBASE.setOnClickListener { abrirActividad(ControlBase::class.java) }
         botonIrACicloVida.setOnClickListener { abrirActividad(ACicloVida::class.java) }
         botonIrListView.setOnClickListener { abrirActividad(BListView::class.java) }
         botonIrIntent.setOnClickListener {  abrirActividaConParametros(CIntentExplicitoParametros::class.java)}
@@ -49,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         intentExplicito.putExtra("nombre", "gabo")
         intentExplicito.putExtra("apellido", "vivas")
         intentExplicito.putExtra("edad", 18)
-        intentExplicito.putExtra("entrenador",BEntrenador("sancho", "panza"))
+        //intentExplicito.putExtra("entrenador",BEntrenador("sancho", "panza"))
         //startActivity(intentExplicito)
 
         startActivityForResult(intentExplicito,CODIGO_RESPUESTA_INTENT_EXPLICITO)

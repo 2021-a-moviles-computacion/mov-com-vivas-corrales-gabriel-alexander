@@ -56,6 +56,26 @@ class ESqliteHelperUsuario(contexto: Context?): SQLiteOpenHelper(contexto,"movil
         return usuarioEncontrado
     }
 
+    fun eliminarUsuarioFormulario(id:Int): Boolean{
+        val conexionEscritura= writableDatabase
+        val resultadoEliminacion= conexionEscritura.delete("USUARIO","id=?", arrayOf(id.toString()))
+        conexionEscritura.close()
+        return resultadoEliminacion.toInt() != -1
+
+    }
+
+    fun actualizarUsuarioFormulario(nombre: String, descripcion: String,idActualizar:Int):Boolean{
+        val conexionEscritura= writableDatabase
+        val valoresAActualizar = ContentValues()
+        valoresAActualizar.put("nombre", nombre)
+        valoresAActualizar.put("descripcion",descripcion)
+        val resultadoActualizacion = conexionEscritura.update("USUARIO",valoresAActualizar, "id=?", arrayOf(idActualizar.toString()))
+        conexionEscritura.close()
+        //return if( resultadoActualizacion ==-1) false else true
+        return resultadoActualizacion != -1
+    }
+
+
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
 
 }
