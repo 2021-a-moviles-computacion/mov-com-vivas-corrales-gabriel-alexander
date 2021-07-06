@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 
 class BListView : AppCompatActivity() {
     var posicionItemSeleccionado =0
@@ -29,20 +30,36 @@ class BListView : AppCompatActivity() {
         listViewEjemplo.adapter = adaptador
 
         val botonAnadirNumero = findViewById<Button>(R.id.btn_anadir_numero)
-        botonAnadirNumero.setOnClickListener {
-            anadirItemsAlListView(
-                BEntrenador("tEST", "test@com"),
-                arregloNumeros,adaptador) }
+       // botonAnadirNumero.setOnClickListener {
+           // anadirItemsAlListView(
+                //BEntrenador("tEST", "test@com"),
+                //arregloNumeros,adaptador)
+                // }
+
+        listViewEjemplo.setOnItemLongClickListener { parent, view, position, id ->
+            Log.i("list-view", "Dio click $position")
 
 
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Titulo")
+            //builder.setMessage("Mensaje")
+            val seleccionUsuario = booleanArrayOf(true,false,false)
+            val opciones = resources.getStringArray(R.array.string_array_opciones_dialogo)
+
+            builder.setMultiChoiceItems(opciones,seleccionUsuario,{dialog,which,isChecked-> Log.i("list-view","$which $isChecked")})
 
 
-//        listViewEjemplo.setOnItemLongClickListener { parent, view, position, id ->
-//            Log.i("list-view", "Dio click $position")
-//            return@setOnItemLongClickListener true
-//        }
+            builder.setPositiveButton("si", { dialog,wich->Log.i("list-view", "si")})
+            builder.setNegativeButton("No", null)
 
-        registerForContextMenu(listViewEjemplo)
+            val dialogo= builder.create()
+            dialogo.show()
+
+
+            return@setOnItemLongClickListener true
+        }
+
+        //registerForContextMenu(listViewEjemplo)
     }
 
 
