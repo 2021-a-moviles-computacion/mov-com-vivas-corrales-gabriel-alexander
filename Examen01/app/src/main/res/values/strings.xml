@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Examen01</string>
+    <string name="crear_button">Crear</string>
+    <string name="director_select">Seleccione Director:</string>
+    <string name="pelicula_select">Seleccione Película:</string>
+    <string name="director_registro">Registro Director</string>
+    <string name="pelicula_registro">Registro Película</string>
+    <string name="registro_Nombre">Nombre:</string>
+    <string name="registro_Titulo">Título:</string>
+    <string name="registro_NumMovies">Películas Dirigidas:</string>
+    <string name="registro_Oscar">Óscar Ganado:</string>
+    <string name="registro_Nacionalidad">Nacionalidad:</string>
+    <string name="registro_FechaNac">Fecha Nacimiento:</string>
+    <string name="registro_AnioEstreno">Año de estreno:</string>
+    <string name="registro_Duracion">Duración en minutos:</string>
+    <string name="registro_Género">Género:</string>
+    <string name="registro_Valoracion">Valoración:</string>
+    <string name="ingreso_Nombre">Ingrese Nombre</string>
+    <string name="registro_Edad">Edad:</string>
+    <string name="ingreso_Edad">Ingrese Edad</string>
+    <string name="director">DIRECTOR</string>
+    <string name="pelicula">PELÍCULA</string>
+    <string name="iniciar_Sistema">Iniciar Sistema</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="guardar">Guardar</string>
+    <string name="ver_pelis">Ver Películas</string>
+</resources>
