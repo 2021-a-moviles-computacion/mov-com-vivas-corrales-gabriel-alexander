@@ -4,9 +4,9 @@ class BaseDatosDirectorOR {
     companion object {
         val arrayDirectores = arrayListOf<Director>()
         init {
-            arrayDirectores.add(Director("Quentin Tarantino",60))
-            arrayDirectores.add(Director("Martin Scorsese",50))
-            arrayDirectores.add(Director("Alfred Hitchcock",20))
+            arrayDirectores.add(Director(1,"Quentin Tarantino","a", "10/10/1980",2,1))
+            arrayDirectores.add(Director(2,"Martin Scorsese","b", "10/10/1900",2,1))
+            arrayDirectores.add(Director(3,"Alfred Hitchcock","v", "10/10/1910",2,1))
         }
     }
 }
