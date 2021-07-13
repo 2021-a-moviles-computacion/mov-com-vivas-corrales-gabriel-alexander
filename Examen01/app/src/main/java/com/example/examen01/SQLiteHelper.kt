@@ -77,6 +77,7 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
                 usuarioEncontrado.nacimiento = fechaNacimiento
                 usuarioEncontrado.numMovies = numPelis
                 usuarioEncontrado.oscar = oscar
+
             } while (resultadoConsultaLectura.moveToNext())
         }
         resultadoConsultaLectura.close()
@@ -88,29 +89,25 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
         val scriptConsultarDirector = "SELECT * FROM DIRECTOR"
         val baseDatosLectura = readableDatabase
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarDirector, null)
-        val existeUsuario = resultadoConsultaLectura.moveToFirst()
-        val arregloDirectores = arrayListOf<Director>()
-        val usuarioEncontrado = Director(0, "", "", "", 0, 0)
-        if (existeUsuario) {
-            do {
-                val id = resultadoConsultaLectura.getInt(0)//ID
-                val nombre = resultadoConsultaLectura.getString(1)
-                val nacionalidad = resultadoConsultaLectura.getString(2)
-                val fechaNacimiento = resultadoConsultaLectura.getString(3)
-                val numPelis = resultadoConsultaLectura.getInt(4)
-                val oscar = resultadoConsultaLectura.getInt(5)
-                usuarioEncontrado.id = id
-                usuarioEncontrado.nombre = nombre
-                usuarioEncontrado.nacionalidad = nacionalidad
-                usuarioEncontrado.nacimiento = fechaNacimiento
-                usuarioEncontrado.numMovies = numPelis
-                usuarioEncontrado.oscar = oscar
-                arregloDirectores.add(usuarioEncontrado)
-            } while (resultadoConsultaLectura.moveToNext())
+        val directores = ArrayList<Director>()
+        resultadoConsultaLectura.moveToFirst()
+        var indice = 0
+        while (!resultadoConsultaLectura.isAfterLast){
+                val usuarioEncontrado = Director(0, "", "", "", 0, 0)
+                usuarioEncontrado.id = resultadoConsultaLectura.getInt(0)//ID
+                usuarioEncontrado.nombre = resultadoConsultaLectura.getString(1)
+                usuarioEncontrado.nacionalidad = resultadoConsultaLectura.getString(2)
+                usuarioEncontrado.nacimiento = resultadoConsultaLectura.getString(3)
+                usuarioEncontrado.numMovies = resultadoConsultaLectura.getInt(4)
+                usuarioEncontrado.oscar = resultadoConsultaLectura.getInt(5)
+                Log.i("bdd", "${usuarioEncontrado.toString()}")
+                directores.add(usuarioEncontrado)
+                resultadoConsultaLectura.moveToNext()
         }
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-        return arregloDirectores
+        Log.i("bdd", "${directores.toString()}")
+        return directores
     }
 
 
