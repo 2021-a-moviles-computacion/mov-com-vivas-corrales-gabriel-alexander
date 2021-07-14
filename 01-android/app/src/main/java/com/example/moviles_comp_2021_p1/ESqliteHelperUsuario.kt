@@ -26,7 +26,7 @@ class ESqliteHelperUsuario(contexto: Context?): SQLiteOpenHelper(contexto,"movil
         valoresAGuardar.put("DESCRIPCION", descripcion)
         val resultadoEscritura: Long= conexionEscritura.insert("USUARIO", null,valoresAGuardar)
         conexionEscritura.close()
-        return if (resultadoEscritura.toInt()==-1) false else true
+        return resultadoEscritura.toInt() != -1
 
     }
 
@@ -61,7 +61,6 @@ class ESqliteHelperUsuario(contexto: Context?): SQLiteOpenHelper(contexto,"movil
         val resultadoEliminacion= conexionEscritura.delete("USUARIO","id=?", arrayOf(id.toString()))
         conexionEscritura.close()
         return resultadoEliminacion.toInt() != -1
-
     }
 
     fun actualizarUsuarioFormulario(nombre: String, descripcion: String,idActualizar:Int):Boolean{

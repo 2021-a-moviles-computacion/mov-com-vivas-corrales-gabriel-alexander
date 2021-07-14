@@ -13,6 +13,7 @@ class ControlBase : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_control_base)
         BBaseDatos.TablaUsuario= ESqliteHelperUsuario(this)
+
         val botonCrear = findViewById<Button>(R.id.btn_CREARBASE)
         val botonActualizar = findViewById<Button>(R.id.btn_actualizar)
         val botonEliminar = findViewById<Button>(R.id.btn_eliminar)
@@ -20,6 +21,7 @@ class ControlBase : AppCompatActivity() {
         val nombre = findViewById<EditText>(R.id.txt_nombre)
         val descripcion = findViewById<EditText>(R.id.txt_descripcion)
         val idIngreso = findViewById<EditText>(R.id.txt_id3)
+
         botonCrear.setOnClickListener {
             if(BBaseDatos.TablaUsuario!=null){
 

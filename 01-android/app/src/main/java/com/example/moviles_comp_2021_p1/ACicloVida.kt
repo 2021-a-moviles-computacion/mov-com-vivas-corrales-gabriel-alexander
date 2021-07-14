@@ -48,8 +48,6 @@ class ACicloVida : AppCompatActivity() {
         Log.i("ciclo-vida","onRestoreInstanceState")
     }
 
-
-
     fun aumentarNumero(){
         numero += 1
         val textViewACicloVida=findViewById<TextView>(

@@ -3,7 +3,7 @@ package com.example.moviles_comp_2021_p1
 import android.os.Parcel
 import android.os.Parcelable
 
-class BEntrenador (val nombre: String?, val descripcion: String?, val liga: DLiga?,) : Parcelable{
+class BEntrenador (val nombre: String?, val descripcion: String?, val liga: DLiga? = null) : Parcelable{
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -13,10 +13,10 @@ class BEntrenador (val nombre: String?, val descripcion: String?, val liga: DLig
 
 
     override fun writeToParcel(parcel: Parcel?, flags: Int) {
-//       if(parcel!=null){
-//           parcel.writeString(nombre)
-//           parcel.writeString(descripcion)
-//       }
+       if(parcel!=null){
+           parcel.writeString(nombre)
+           parcel.writeString(descripcion)
+       }
         parcel?.writeString(nombre)
         parcel?.writeString(descripcion)
 
