@@ -66,8 +66,10 @@ class Pelis_View : AppCompatActivity() {
                 Toast.makeText(this, android.R.string.cancel, Toast.LENGTH_SHORT).show()
             }
             val eliminarClick = { dialog: DialogInterface, which: Int ->
+                directores.removeAt(posicionItemSeleccionado)
+                adaptador.notifyDataSetChanged() //Actualizamos interfaz
+                //eliminarDirectorAlListView(posicionItemSeleccionado, directores, adaptador)
                 Toast.makeText(this, "Eliminado", Toast.LENGTH_SHORT).show()
-                eliminarDirectorAlListView(posicionItemSeleccionado, directores, adaptador)
             }
             return when (item.itemId) {
                 R.id.menu_editar -> {

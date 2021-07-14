@@ -10,14 +10,16 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.solver.widgets.analyzer.Direct
 
 
 class Director_View : AppCompatActivity() {
     var posicionItemSeleccionado = 0
+    var nombreDirectorSeleccionado = ""
 
     override fun onStart() {
         super.onStart()
-        BaseDatos.TablaDirector= SQLiteHelper(this)
+        BaseDatos.TablaDirector = SQLiteHelper(this)
         val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
         val listDirectoresView = findViewById<ListView>(R.id.listView_Director)
@@ -25,13 +27,12 @@ class Director_View : AppCompatActivity() {
         listDirectoresView.adapter = adaptador
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_director_view)
 
-        BaseDatos.TablaDirector= SQLiteHelper(this)
+        BaseDatos.TablaDirector = SQLiteHelper(this)
 
         val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
@@ -40,7 +41,6 @@ class Director_View : AppCompatActivity() {
         val botonCrearDirector = findViewById<Button>(R.id.btn_crear_Director)
         val botonVerPelis = findViewById<Button>(R.id.btn_verPelis)
         botonVerPelis.isEnabled = false //Desactivo botón hasta seleccionar
-        //botonCrearDirector.setOnClickListener { anadirDirectorAlListView(Director("Gabriel Vivas",20),directores,adaptador)  }
         botonCrearDirector.setOnClickListener { abrirActividad(AnadirDirector::class.java) }
         registerForContextMenu(listDirectoresView)
         val infoDirector = findViewById<TextView>(R.id.txt_InfoDir)
@@ -48,39 +48,19 @@ class Director_View : AppCompatActivity() {
         listDirectoresView.setOnItemClickListener { parent, view, position, id ->
             botonVerPelis.isEnabled = true
             val dirSelec = listDirectoresView.getItemAtPosition(position) as Director
-            val datosDirector = """
-                Nombre: ${dirSelec.nombre} 
-                Nacionalidad: ${dirSelec.nacionalidad}
-                Fecha de Nacimiento: ${dirSelec.nacimiento}
-                Películas Dirigidas: ${dirSelec.numMovies}
-                Ganador de Óscar: ${dirSelec.oscar}
-            """.trimIndent()
-            infoDirector.text = datosDirector
-            botonVerPelis.setOnClickListener { abrirActividadConParametros(dirSelec.nombre,Pelis_View::class.java) }
+            infoDirector.text = dirSelec.imprimirDatosDirector()
+            botonVerPelis.setOnClickListener {
+                abrirActividadConParametros(
+                    dirSelec.nombre,
+                    Pelis_View::class.java
+                )
+            }
             return@setOnItemClickListener
         }
 
 
     }
 
-
-    fun anadirDirectorAlListView(
-        director: Director,
-        arreglo: ArrayList<Director>,
-        adaptador: ArrayAdapter<Director>
-    ) {
-        arreglo.add(director)
-        adaptador.notifyDataSetChanged() //Actualizamos interfaz
-    }
-
-    fun eliminarDirectorAlListView(
-        indice: Int,
-        arreglo: ArrayList<Director>,
-        adaptador: ArrayAdapter<Director>
-    ) {
-        arreglo.removeAt(indice)
-        adaptador.notifyDataSetChanged() //Actualizamos interfaz
-    }
 
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -98,19 +78,22 @@ class Director_View : AppCompatActivity() {
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
 
-        BaseDatos.TablaDirector= SQLiteHelper(this)
+        BaseDatos.TablaDirector = SQLiteHelper(this)
 
         val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
         val listDirectoresView = findViewById<ListView>(R.id.listView_Director)
+        val directorSeleccionado = listDirectoresView.getItemAtPosition(posicionItemSeleccionado) as Director
+        nombreDirectorSeleccionado = directorSeleccionado.nombre
         listDirectoresView.adapter = adaptador
         val cancelarClick = { dialog: DialogInterface, which: Int ->
             Toast.makeText(this, android.R.string.cancel, Toast.LENGTH_SHORT).show()
         }
         val eliminarClick = { dialog: DialogInterface, which: Int ->
+            Log.i("bdd", "Nombre director: $nombreDirectorSeleccionado")
+            BaseDatos.TablaDirector!!.eliminarDirector(nombreDirectorSeleccionado)
+            onStart()
             Toast.makeText(this, "Eliminado", Toast.LENGTH_SHORT).show()
-            BaseDatos.TablaDirector!!.eliminarDirector(posicionItemSeleccionado)
-            eliminarDirectorAlListView(posicionItemSeleccionado, directores, adaptador)
         }
         return when (item.itemId) {
             R.id.menu_editar -> {

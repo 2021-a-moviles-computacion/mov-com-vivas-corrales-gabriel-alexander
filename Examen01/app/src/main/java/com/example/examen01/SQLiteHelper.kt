@@ -111,10 +111,10 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
     }
 
 
-    fun eliminarDirector(id: Int): Boolean {
+    fun eliminarDirector(nombre:String): Boolean {
         val conexionEscritura = writableDatabase
         val resultadoEliminacion =
-            conexionEscritura.delete("DIRECTOR", "ID_DIR=?", arrayOf(id.toString()))
+            conexionEscritura.delete("DIRECTOR", "NOMBRE=?", arrayOf(nombre))
         conexionEscritura.close()
         return resultadoEliminacion != -1
     }
