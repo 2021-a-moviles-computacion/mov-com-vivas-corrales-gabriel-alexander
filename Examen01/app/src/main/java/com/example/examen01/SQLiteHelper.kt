@@ -56,8 +56,8 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
 
     }
 
-    fun consultarUsuarioPorId(id: Int): Director {
-        val scriptConsultarDirector = "SELECT * FROM DIRECTOR WHERE ID_DIR= $id"
+    fun consultarUsuarioPorNombre(nombreDirector:String): Director {
+        val scriptConsultarDirector = "SELECT * FROM DIRECTOR WHERE NOMBRE=\"$nombreDirector\""
         val baseDatosLectura = readableDatabase
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarDirector, null)
         val existeUsuario = resultadoConsultaLectura.moveToFirst()
@@ -100,13 +100,11 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
                 usuarioEncontrado.nacimiento = resultadoConsultaLectura.getString(3)
                 usuarioEncontrado.numMovies = resultadoConsultaLectura.getInt(4)
                 usuarioEncontrado.oscar = resultadoConsultaLectura.getInt(5)
-                Log.i("bdd", "${usuarioEncontrado.toString()}")
                 directores.add(usuarioEncontrado)
                 resultadoConsultaLectura.moveToNext()
         }
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-        Log.i("bdd", "${directores.toString()}")
         return directores
     }
 

@@ -31,7 +31,6 @@ class Director_View : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_director_view)
-
         BaseDatos.TablaDirector = SQLiteHelper(this)
 
         val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
@@ -97,7 +96,7 @@ class Director_View : AppCompatActivity() {
         }
         return when (item.itemId) {
             R.id.menu_editar -> {
-                abrirActividad(AnadirDirector::class.java)
+                abrirActividadConParametros(nombreDirectorSeleccionado, AnadirDirector::class.java)
                 return true
             }
             R.id.menu_eliminar -> {

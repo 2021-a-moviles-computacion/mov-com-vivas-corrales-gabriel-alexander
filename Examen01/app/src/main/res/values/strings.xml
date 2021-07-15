@@ -25,4 +25,5 @@
     <string name="eliminar">Eliminar</string>
     <string name="guardar">Guardar</string>
     <string name="ver_pelis">Ver Películas</string>
+    <string name="actualizar_Director_Titulo">Actualizar Director</string>
 </resources>
