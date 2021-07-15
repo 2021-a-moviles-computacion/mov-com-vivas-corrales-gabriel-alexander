@@ -18,13 +18,13 @@ class Pelis_View : AppCompatActivity() {
         val nombreDirector = intent.getStringExtra("nombreDirector")
         val txtDirector = findViewById<TextView>(R.id.txt_NombreDirectorPeli)
         txtDirector.text = nombreDirector
-        val peliculas = BaseDatosDirectorOR.arrayDirectores
+        val peliculas = BaseDatos.TablaDirector!!.consultarTodosDirectores()
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
         val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
         listPeliculasView.adapter = adaptador
         val botonCrearPelicula = findViewById<Button>(R.id.btn_crear_Pelicula)
         botonCrearPelicula.setOnClickListener {
-            if (nombreDirector != null) abrirActividadConParametros(nombreDirector,AnadirPelicula::class.java)
+            if (nombreDirector != null) abrirActividadConParametros(nombreDirector,"",AnadirPelicula::class.java)
         }
         registerForContextMenu(listPeliculasView)
         val infoPelicula = findViewById<TextView>(R.id.txt_infoMovies)
@@ -58,7 +58,7 @@ class Pelis_View : AppCompatActivity() {
     }
 
         override fun onContextItemSelected(item: MenuItem): Boolean {
-            val directores = BaseDatosDirectorOR.arrayDirectores
+            val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
             val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
             val listDirectoresView = findViewById<ListView>(R.id.listview_Peliculas)
             listDirectoresView.adapter = adaptador
@@ -96,9 +96,10 @@ class Pelis_View : AppCompatActivity() {
             }
         }
 
-    fun abrirActividadConParametros(director: String, clase: Class<*>) {
+    fun abrirActividadConParametros(director: String, titulo:String, clase: Class<*>) {
         val intentExplicito = Intent(this, clase)
         intentExplicito.putExtra("nombreDirector", director)
+        intentExplicito.putExtra("tituloPelicula", titulo)
         startActivity(intentExplicito)
     }
         fun abrirActividad(clase: Class<*>) {
