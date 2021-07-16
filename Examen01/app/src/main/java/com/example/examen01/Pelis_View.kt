@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
@@ -12,101 +13,108 @@ import androidx.appcompat.app.AlertDialog
 
 class Pelis_View : AppCompatActivity() {
     var posicionItemSeleccionado = 0
+    var tituloPeliSeleccionada = ""
+    var nombreDirector = ""
+    var idDirector = 0
+    override fun onStart() {
+        super.onStart()
+        BaseDatos.Tablas = SQLiteHelper(this)
+        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
+        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
+        val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
+        adaptador.notifyDataSetChanged()
+        listPeliculasView.adapter = adaptador
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pelis_view)
-        val nombreDirector = intent.getStringExtra("nombreDirector")
         val txtDirector = findViewById<TextView>(R.id.txt_NombreDirectorPeli)
+        nombreDirector = intent.getStringExtra("nombreDirector").toString()
+        idDirector = intent.getIntExtra("idDirector", 0)
+
+        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
         txtDirector.text = nombreDirector
-        val peliculas = BaseDatos.TablaDirector!!.consultarTodosDirectores()
         val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
         val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
         listPeliculasView.adapter = adaptador
         val botonCrearPelicula = findViewById<Button>(R.id.btn_crear_Pelicula)
         botonCrearPelicula.setOnClickListener {
-            if (nombreDirector != null) abrirActividadConParametros(nombreDirector,"",AnadirPelicula::class.java)
+            abrirActividadConParametros(nombreDirector, idDirector, "", AnadirPelicula::class.java)
         }
         registerForContextMenu(listPeliculasView)
         val infoPelicula = findViewById<TextView>(R.id.txt_infoMovies)
-        listPeliculasView.setOnItemClickListener { parent, view, position, id ->
-            val peliSelect = listPeliculasView.getItemAtPosition(position) as Director
-            infoPelicula.setText("Nombre: ${peliSelect.nacimiento} \n")
+        listPeliculasView.setOnItemClickListener { _, _, position, _ ->
+            val peliSelect = listPeliculasView.getItemAtPosition(position) as Pelicula
+            infoPelicula.text = peliSelect.imprimirDatosPelicula()
             return@setOnItemClickListener
         }
     }
 
-        override fun onCreateContextMenu(
-            menu: ContextMenu?,
-            v: View?,
-            menuInfo: ContextMenu.ContextMenuInfo?
-        ) {
-            super.onCreateContextMenu(menu, v, menuInfo)
-            val inflater = menuInflater
-            inflater.inflate(R.menu.menu, menu)
-            val info = menuInfo as AdapterView.AdapterContextMenuInfo //AS cast
-            posicionItemSeleccionado = info.position
-
-        }
-
-    fun eliminarDirectorAlListView(
-        indice: Int,
-        arreglo: ArrayList<Director>,
-        adaptador: ArrayAdapter<Director>
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
     ) {
-        arreglo.removeAt(indice)
-        adaptador.notifyDataSetChanged() //Actualizamos interfaz
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo //AS cast
+        posicionItemSeleccionado = info.position
+
     }
 
-        override fun onContextItemSelected(item: MenuItem): Boolean {
-            val directores = BaseDatos.TablaDirector!!.consultarTodosDirectores()
-            val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
-            val listDirectoresView = findViewById<ListView>(R.id.listview_Peliculas)
-            listDirectoresView.adapter = adaptador
-            val cancelarClick = { dialog: DialogInterface, which: Int ->
-                Toast.makeText(this, android.R.string.cancel, Toast.LENGTH_SHORT).show()
-            }
-            val eliminarClick = { dialog: DialogInterface, which: Int ->
-                directores.removeAt(posicionItemSeleccionado)
-                adaptador.notifyDataSetChanged() //Actualizamos interfaz
-                //eliminarDirectorAlListView(posicionItemSeleccionado, directores, adaptador)
-                Toast.makeText(this, "Eliminado", Toast.LENGTH_SHORT).show()
-            }
-            return when (item.itemId) {
-                R.id.menu_editar -> {
-                    abrirActividad(AnadirDirector::class.java)
-                    return true
-                }
-                R.id.menu_eliminar -> {
-                    val advertencia = AlertDialog.Builder(this)
-                    advertencia.setTitle("Eliminar")
-                    advertencia.setMessage("Seguro de eliminar?")
-                    advertencia.setNegativeButton(
-                        "Cancelar",
-                        DialogInterface.OnClickListener(function = cancelarClick)
-                    )
-                    advertencia.setPositiveButton(
-                        "Eliminar", DialogInterface.OnClickListener(
-                            function = eliminarClick
-                        )
-                    )
-                    advertencia.show()
-                    return true
-                }
-                else -> super.onContextItemSelected(item)
-            }
-        }
 
-    fun abrirActividadConParametros(director: String, titulo:String, clase: Class<*>) {
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+
+        BaseDatos.Tablas = SQLiteHelper(this)
+
+        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
+        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
+        val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
+        val peliculaSeleccionada = listPeliculasView.getItemAtPosition(posicionItemSeleccionado) as Pelicula
+        tituloPeliSeleccionada = peliculaSeleccionada.titulo
+        listPeliculasView.adapter = adaptador
+        val cancelarClick = { _: DialogInterface, _: Int ->
+            Toast.makeText(this, android.R.string.cancel, Toast.LENGTH_SHORT).show()
+        }
+        val eliminarClick = { _: DialogInterface, _: Int ->
+            Log.i("bdd", "Titulo Movie: $tituloPeliSeleccionada")
+            BaseDatos.Tablas!!.eliminarPelicula(tituloPeliSeleccionada)
+            onStart()
+            Toast.makeText(this, "Eliminada", Toast.LENGTH_SHORT).show()
+        }
+        return when (item.itemId) {
+            R.id.menu_editar -> {
+                abrirActividadConParametros(nombreDirector, idDirector, tituloPeliSeleccionada, AnadirPelicula::class.java)
+                return true
+            }
+            R.id.menu_eliminar -> {
+                val advertencia = AlertDialog.Builder(this)
+                advertencia.setTitle("Eliminar")
+                advertencia.setMessage("Seguro de eliminar?")
+                advertencia.setNegativeButton(
+                    "Cancelar",
+                    DialogInterface.OnClickListener(function = cancelarClick)
+                )
+                advertencia.setPositiveButton(
+                    "Eliminar", DialogInterface.OnClickListener(
+                        function = eliminarClick
+                    )
+                )
+                advertencia.show()
+                return true
+            }
+            else -> super.onContextItemSelected(item)
+        }
+    }
+
+    private fun abrirActividadConParametros(director: String, idiDirector: Int, titulo: String, clase: Class<*>) {
         val intentExplicito = Intent(this, clase)
         intentExplicito.putExtra("nombreDirector", director)
+        intentExplicito.putExtra("idDirector", idiDirector)
         intentExplicito.putExtra("tituloPelicula", titulo)
         startActivity(intentExplicito)
     }
-        fun abrirActividad(clase: Class<*>) {
-            val intentExplicito = Intent(this, clase)
-            startActivity(intentExplicito)
-        }
-
-
-
 }

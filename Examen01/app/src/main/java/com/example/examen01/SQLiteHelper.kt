@@ -29,8 +29,8 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
 
         db?.execSQL(scriptCrearTablaDirector)
         Log.i("bdd", "Creación Tabla Director")
-        //db?.execSQL(scriptCrearTablaPelicula)
-        //Log.i("bdd", "Creación Tabla Película")
+        db?.execSQL(scriptCrearTablaPelicula)
+        Log.i("bdd", "Creación Tabla Película")
         //        TODO("Not yet implemented")
     }
 
@@ -56,7 +56,30 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
 
     }
 
-    fun consultarUsuarioPorNombre(nombreDirector:String): Director {
+    fun crearPelicula(
+        titulo: String,
+        anioEstreno: Int,
+        duracion: Int,
+        valoracion: Float,
+        generos: String,
+        director: Int
+    ): Boolean {
+        val conexionEscritura = writableDatabase
+        val valoresAGuardar = ContentValues()
+        valoresAGuardar.put("TITULO", titulo)
+        valoresAGuardar.put("ANIOESTRENO", anioEstreno)
+        valoresAGuardar.put("DURACION", duracion)
+        valoresAGuardar.put("VALORACION", valoracion)
+        valoresAGuardar.put("GENERO", generos)
+        valoresAGuardar.put("DIRECTOR", director)
+
+        val resultadoEscritura: Long = conexionEscritura.insert("PELICULA", null, valoresAGuardar)
+        conexionEscritura.close()
+        return resultadoEscritura.toInt() != -1
+
+    }
+
+    fun consultarDirectorPorNombre(nombreDirector: String): Director {
         val scriptConsultarDirector = "SELECT * FROM DIRECTOR WHERE NOMBRE=\"$nombreDirector\""
         val baseDatosLectura = readableDatabase
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarDirector, null)
@@ -91,25 +114,68 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
         val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarDirector, null)
         val directores = ArrayList<Director>()
         resultadoConsultaLectura.moveToFirst()
-        var indice = 0
-        while (!resultadoConsultaLectura.isAfterLast){
-                val usuarioEncontrado = Director(0, "", "", "", 0, 0)
-                usuarioEncontrado.id = resultadoConsultaLectura.getInt(0)//ID
-                usuarioEncontrado.nombre = resultadoConsultaLectura.getString(1)
-                usuarioEncontrado.nacionalidad = resultadoConsultaLectura.getString(2)
-                usuarioEncontrado.nacimiento = resultadoConsultaLectura.getString(3)
-                usuarioEncontrado.numMovies = resultadoConsultaLectura.getInt(4)
-                usuarioEncontrado.oscar = resultadoConsultaLectura.getInt(5)
-                directores.add(usuarioEncontrado)
-                resultadoConsultaLectura.moveToNext()
+        while (!resultadoConsultaLectura.isAfterLast) {
+            val director = Director(0, "", "", "", 0, 0)
+            director.id = resultadoConsultaLectura.getInt(0)//ID
+            director.nombre = resultadoConsultaLectura.getString(1)
+            director.nacionalidad = resultadoConsultaLectura.getString(2)
+            director.nacimiento = resultadoConsultaLectura.getString(3)
+            director.numMovies = resultadoConsultaLectura.getInt(4)
+            director.oscar = resultadoConsultaLectura.getInt(5)
+            directores.add(director)
+            resultadoConsultaLectura.moveToNext()
         }
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
         return directores
     }
 
+    fun consultarTodasPeliculasDeUnDirector(idDirector:Int): ArrayList<Pelicula> {
+        val scriptConsultarPeliculas = "SELECT * FROM PELICULA WHERE DIRECTOR=$idDirector"
+        val baseDatosLectura = readableDatabase
+        val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarPeliculas, null)
+        val peliculas = ArrayList<Pelicula>()
+        resultadoConsultaLectura.moveToFirst()
+        while (!resultadoConsultaLectura.isAfterLast) {
+            val pelicula = Pelicula(0, "", 0, 0, 0f, "", 0)
+            pelicula.id = resultadoConsultaLectura.getInt(0)//ID
+            pelicula.titulo = resultadoConsultaLectura.getString(1)
+            pelicula.anioEstreno = resultadoConsultaLectura.getInt(2)
+            pelicula.duracion = resultadoConsultaLectura.getInt(3)
+            pelicula.valoracion = resultadoConsultaLectura.getFloat(4)
+            pelicula.genero = resultadoConsultaLectura.getString(5)
+            pelicula.director = resultadoConsultaLectura.getInt(6)
+            peliculas.add(pelicula)
+            resultadoConsultaLectura.moveToNext()
+        }
+        resultadoConsultaLectura.close()
+        baseDatosLectura.close()
+        return peliculas
+    }
 
-    fun eliminarDirector(nombre:String): Boolean {
+    fun consultarPeliculaPorTitulo(tituloPelicula: String): Pelicula {
+        val scriptConsultarPeliculas = "SELECT * FROM PELICULA WHERE TITULO=\"$tituloPelicula\""
+        val baseDatosLectura = readableDatabase
+        val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultarPeliculas, null)
+        resultadoConsultaLectura.moveToFirst()
+        val pelicula = Pelicula(0, "", 0, 0, 0f, "", 0)
+        while (!resultadoConsultaLectura.isAfterLast) {
+            pelicula.id = resultadoConsultaLectura.getInt(0)//ID
+            pelicula.titulo = resultadoConsultaLectura.getString(1)
+            pelicula.anioEstreno = resultadoConsultaLectura.getInt(2)
+            pelicula.duracion = resultadoConsultaLectura.getInt(3)
+            pelicula.valoracion = resultadoConsultaLectura.getFloat(4)
+            pelicula.genero = resultadoConsultaLectura.getString(5)
+            pelicula.director = resultadoConsultaLectura.getInt(6)
+            resultadoConsultaLectura.moveToNext()
+        }
+        resultadoConsultaLectura.close()
+        baseDatosLectura.close()
+        return pelicula
+    }
+
+
+    fun eliminarDirector(nombre: String): Boolean {
         val conexionEscritura = writableDatabase
         val resultadoEliminacion =
             conexionEscritura.delete("DIRECTOR", "NOMBRE=?", arrayOf(nombre))
@@ -117,6 +183,13 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
         return resultadoEliminacion != -1
     }
 
+    fun eliminarPelicula(titulo: String): Boolean {
+        val conexionEscritura = writableDatabase
+        val resultadoEliminacion =
+            conexionEscritura.delete("PELICULA", "TITULO=?", arrayOf(titulo))
+        conexionEscritura.close()
+        return resultadoEliminacion != -1
+    }
 
     fun actualizarDirector(
         nombre: String,
@@ -137,6 +210,31 @@ class SQLiteHelper(contexto: Context?) : SQLiteOpenHelper(contexto, "examen", nu
             "DIRECTOR",
             valoresAActualizar,
             "ID_DIR=?",
+            arrayOf(idActualizar.toString())
+        )
+        conexionEscritura.close()
+        return resultadoActualizacion != -1
+    }
+
+    fun actualizarPelicula(
+        titulo: String,
+        anioEstreno: Int,
+        duracion: Int,
+        valoracion: Float,
+        generos: String,
+        idActualizar: Int
+    ): Boolean {
+        val conexionEscritura = writableDatabase
+        val valoresAActualizar = ContentValues()
+        valoresAActualizar.put("TITULO", titulo)
+        valoresAActualizar.put("ANIOESTRENO", anioEstreno)
+        valoresAActualizar.put("DURACION", duracion)
+        valoresAActualizar.put("VALORACION", valoracion)
+        valoresAActualizar.put("GENERO", generos)
+        val resultadoActualizacion = conexionEscritura.update(
+            "PELICULA",
+            valoresAActualizar,
+            "ID_PELI=?",
             arrayOf(idActualizar.toString())
         )
         conexionEscritura.close()

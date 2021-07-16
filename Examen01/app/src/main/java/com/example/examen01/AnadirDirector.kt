@@ -1,6 +1,7 @@
 package com.example.examen01
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View.INVISIBLE
@@ -10,10 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
 
-class AnadirDirector() : AppCompatActivity() {
+class AnadirDirector : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        BaseDatos.TablaDirector = SQLiteHelper(this)
+        BaseDatos.Tablas = SQLiteHelper(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anadir_director)
         val nombre = findViewById<TextView>(R.id.txt_ingresoNombre)
@@ -50,7 +51,7 @@ class AnadirDirector() : AppCompatActivity() {
             val tituloActualizarDirector = findViewById<TextView>(R.id.txt_registroDirector_Tit)
             tituloActualizarDirector.text = getString(R.string.actualizar_Director_Titulo)
             //Obtengo Datos actuales del Director y los paso a TextFields
-            val directorParaEditar = BaseDatos.TablaDirector!!.consultarUsuarioPorNombre(nombreDirector)
+            val directorParaEditar = BaseDatos.Tablas!!.consultarDirectorPorNombre(nombreDirector)
             val idActualizar = directorParaEditar.id
             nombre.text = directorParaEditar.nombre
             nacionalidad.text = directorParaEditar.nacionalidad
@@ -62,10 +63,10 @@ class AnadirDirector() : AppCompatActivity() {
                 val nombreActualizado = nombre.text.toString()
                 val nacionalidadActualizada = nacionalidad.text.toString()
                 val numPelisActualizada = numPelis.text.toString()
-                var oscarInt = if (oscar.isChecked) 1 else 0 //Convierto boolean a Int
+                val oscarInt = if (oscar.isChecked) 1 else 0 //Convierto boolean a Int
                 //Reviso si los TextFields están llenos
                 if (!revisarTextLlenos(nombreActualizado, nacionalidadActualizada, numPelisActualizada, fecha)) {
-                    BaseDatos.TablaDirector!!.actualizarDirector(
+                    BaseDatos.Tablas!!.actualizarDirector(
                         nombreActualizado,
                         nacionalidadActualizada,
                         fecha.text.toString(),
@@ -74,6 +75,7 @@ class AnadirDirector() : AppCompatActivity() {
                         idActualizar
                     )
                     Toast.makeText(this, "Director actualizado", Toast.LENGTH_SHORT).show()
+                    abrirActividad(Director_View::class.java)
                 }
             }
 
@@ -82,9 +84,9 @@ class AnadirDirector() : AppCompatActivity() {
                 val nombreAGuardar = nombre.text.toString()
                 val nacionalidadAGuardar = nacionalidad.text.toString()
                 val numPelisAGuardar = numPelis.text.toString()
-                var oscarInt = if (oscar.isChecked) 1 else 0
-                if (!revisarTextLlenos(nombreAGuardar,nacionalidadAGuardar,numPelisAGuardar,fecha)) {
-                    BaseDatos.TablaDirector!!.crearDirector(
+                val oscarInt = if (oscar.isChecked) 1 else 0
+                if (!revisarTextLlenos(nombreAGuardar, nacionalidadAGuardar, numPelisAGuardar, fecha)) {
+                    BaseDatos.Tablas!!.crearDirector(
                         nombreAGuardar,
                         nacionalidadAGuardar,
                         fecha.text.toString(),
@@ -92,15 +94,22 @@ class AnadirDirector() : AppCompatActivity() {
                         oscarInt
                     )
                     Toast.makeText(this, "Director guardado", Toast.LENGTH_SHORT).show()
+                    abrirActividad(Director_View::class.java)
                 }
             }
         }
     }
 
-    fun revisarTextLlenos(nombre: String, nacionalidad: String, numPelis: String, fecha: TextView): Boolean {
+
+     private fun  revisarTextLlenos(nombre: String, nacionalidad: String, numPelis: String, fecha: TextView): Boolean {
         return if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(nacionalidad) || TextUtils.isEmpty(numPelis) || fecha.text.equals("MM/DD/YYYY")) {
             Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show()
             true
         } else false
+    }
+
+     private fun abrirActividad(clase: Class<*>) {
+        val intentExplicito = Intent(this, clase)
+        startActivity(intentExplicito)
     }
 }

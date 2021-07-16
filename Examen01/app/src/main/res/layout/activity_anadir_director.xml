@@ -11,7 +11,7 @@
         android:id="@+id/btn_guardarDir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="64dp"
         android:text="@string/guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,72 +19,28 @@
 
     <TextView
         android:id="@+id/txt_fecha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/registro_FechaNac"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNacionalidad" />
-
-    <TextView
-        android:id="@+id/txt_ingresoDate"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="MM/DD/YYYY"
-        app:layout_constraintEnd_toEndOf="@+id/txt_fecha"
-        app:layout_constraintHorizontal_bias="0.357"
-        app:layout_constraintStart_toStartOf="@+id/txt_fecha"
-        app:layout_constraintTop_toBottomOf="@+id/txt_fecha" />
-
-    <EditText
-        android:id="@+id/txt_ingresoNacionalidad"
-        android:layout_width="283dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:text="@string/registro_FechaNac"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_Nacionalida" />
-
-    <EditText
-        android:id="@+id/txt_ingresoNumPelis"
-        android:layout_width="283dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_PeliculasDirigidas" />
-
-    <TextView
-        android:id="@+id/txt_Nacionalida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/registro_Nacionalidad"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNacionalidad" />
 
     <DatePicker
         android:id="@+id/datePicker1"
         style="@android:style/Widget.Holo.DatePicker"
         android:layout_width="225dp"
         android:layout_height="122dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:calendarViewShown="false"
         android:clickable="false"
         android:clipChildren="false"
         android:datePickerMode="spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_fecha" />
 
@@ -92,43 +48,83 @@
         android:id="@+id/checkFecha"
         android:layout_width="31dp"
         android:layout_height="31dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintEnd_toEndOf="@+id/datePicker1"
         app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/datePicker1"
         app:layout_constraintStart_toStartOf="@+id/datePicker1"
         app:layout_constraintTop_toTopOf="@+id/datePicker1" />
 
     <TextView
         android:id="@+id/txt_PeliculasDirigidas"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="164dp"
         android:text="@string/registro_NumMovies"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_fecha" />
 
     <EditText
-        android:id="@+id/txt_ingresoNombre"
-        android:layout_width="292dp"
-        android:layout_height="40dp"
+        android:id="@+id/txt_ingresoNumPelis"
+        style="@style/textInserts"
         android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_PeliculasDirigidas" />
+
+    <TextView
+        android:id="@+id/txt_ingresoDate"
+        style="@style/textViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="MM/DD/YYYY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fecha" />
+
+    <EditText
+        android:id="@+id/txt_ingresoNacionalidad"
+        style="@style/textInserts"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_Nacionalida" />
+
+    <TextView
+        android:id="@+id/txt_Nacionalida"
+        style="@style/textViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/registro_Nacionalidad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNombre" />
+
+    <EditText
+        android:id="@+id/txt_ingresoNombre"
+        style="@style/textInserts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_Nombre" />
 
     <TextView
         android:id="@+id/txt_Nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        style="@style/textViews"
         android:text="@string/registro_Nombre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_registroDirector_Tit" />
 
@@ -140,6 +136,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.055" />
@@ -148,10 +145,11 @@
         android:id="@+id/check_oscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:text="@string/registro_Oscar"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNumPelis" />
 
