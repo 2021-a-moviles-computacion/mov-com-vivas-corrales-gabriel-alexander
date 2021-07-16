@@ -7,24 +7,25 @@
     tools:context=".AnadirPelicula">
 
     <EditText
-        android:id="@+id/txt_ingresoNombre3"
-        android:layout_width="295dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/txt_tituloPelicula"
+        style="@style/textInserts"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_tituloPeli" />
 
     <TextView
-        android:id="@+id/txt_registroDirector_Tit3"
+        android:id="@+id/txt_registroPelicula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pelicula_registro"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
@@ -33,62 +34,67 @@
         android:id="@+id/btn_guardarPelicula"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="56dp"
         android:text="@string/guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txt_tituloPeli"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="@string/registro_Titulo"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_registroDirector_Tit3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_registroPelicula" />
 
     <EditText
-        android:id="@+id/editTextNumber3"
-        android:layout_width="291dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="20dp"
+        android:id="@+id/txt_ingresoAnio"
+        style="@style/textInserts"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_estreno" />
 
     <TextView
         android:id="@+id/txt_estreno"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="@string/registro_AnioEstreno"
-        app:layout_constraintEnd_toEndOf="@+id/txt_ingresoNombre3"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/txt_ingresoNombre3"
-        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoNombre3" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tituloPelicula" />
 
     <TextView
         android:id="@+id/txt_valoracion"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="40dp"
         android:text="@string/registro_Valoracion"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_selectGenero" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="242dp"
         android:layout_height="43dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_valoracion" />
 
@@ -96,52 +102,71 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
         android:text="@string/director"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_registroDirector_Tit3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_registroPelicula" />
 
     <TextView
         android:id="@+id/txt_nombreDirector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/txt_registroDirector_Tit3" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_registroPelicula" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/textViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/registro_Duracion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_ingresoAnio" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/textViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/registro_Género"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_duracion" />
 
     <EditText
-        android:id="@+id/editTextNumberDecimal"
-        android:layout_width="288dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
+        android:id="@+id/txt_duracion"
+        style="@style/textInserts"
+        android:layout_marginTop="12dp"
         android:ems="10"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_selectGenero"
+        style="@style/textViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/registro_Duracion"
+        android:layout_marginTop="16dp"
+        android:text="@string/seleccione"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumber3" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/registro_Género"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

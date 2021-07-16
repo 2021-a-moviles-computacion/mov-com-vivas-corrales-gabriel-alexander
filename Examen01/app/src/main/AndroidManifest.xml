@@ -11,10 +11,8 @@
         android:theme="@style/Theme.Examen01">
         <activity android:name=".AnadirPelicula"></activity>
         <activity android:name=".AnadirDirector" />
-        <activity android:name=".RegistrarDirector" />
         <activity android:name=".Pelis_View" />
-        <activity android:name=".Director_View" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Director_View">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

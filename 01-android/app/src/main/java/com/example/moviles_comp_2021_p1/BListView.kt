@@ -30,11 +30,11 @@ class BListView : AppCompatActivity() {
         listViewEjemplo.adapter = adaptador
 
         val botonAnadirNumero = findViewById<Button>(R.id.btn_anadir_numero)
-       // botonAnadirNumero.setOnClickListener {
-           // anadirItemsAlListView(
-                //BEntrenador("tEST", "test@com"),
-                //arregloNumeros,adaptador)
-                // }
+        botonAnadirNumero.setOnClickListener {
+            anadirItemsAlListView(
+                BEntrenador("tEST", "test@com"),
+                arregloNumeros,adaptador)
+                 }
 
         listViewEjemplo.setOnItemLongClickListener { parent, view, position, id ->
             Log.i("list-view", "Dio click $position")
@@ -59,7 +59,7 @@ class BListView : AppCompatActivity() {
             return@setOnItemLongClickListener true
         }
 
-        //registerForContextMenu(listViewEjemplo)
+        registerForContextMenu(listViewEjemplo)
     }
 
 

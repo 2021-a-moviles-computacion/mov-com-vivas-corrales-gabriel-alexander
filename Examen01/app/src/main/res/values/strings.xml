@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Examen01</string>
     <string name="crear_button">Crear</string>
+    <string name="seleccione">Seleccione:</string>
     <string name="director_select">Seleccione Director:</string>
     <string name="pelicula_select">Seleccione Película:</string>
     <string name="director_registro">Registro Director</string>
@@ -25,4 +26,20 @@
     <string name="eliminar">Eliminar</string>
     <string name="guardar">Guardar</string>
     <string name="ver_pelis">Ver Películas</string>
+    <string name="actualizar_Director_Titulo">Actualizar Director</string>
+    <string name="actualizar_Película_Titulo">Actualizar Película</string>
+    <string-array name="generos_dialogo">
+        <item>Acción</item>
+        <item>Animación</item>
+        <item>Aventura</item>
+        <item>Bélica</item>
+        <item>Ciencia Ficción</item>
+        <item>Comedia</item>
+        <item>Documental</item>
+        <item>Drama</item>
+        <item>Musical</item>
+        <item>Romance</item>
+        <item>Terror</item>
+        <item>Thriller</item>
+    </string-array>
 </resources>

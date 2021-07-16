@@ -1,6 +1,5 @@
 package com.example.moviles_comp_2021_p1
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +7,6 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
 import android.widget.Button
-import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : AppCompatActivity() {
     val CODIGO_RESPUESTA_INTENT_EXPLICITO = 401
@@ -27,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         val botonIrListView = findViewById<Button>(R.id.btn_ir_list_view)
         val botonIrIntent = findViewById<Button>(R.id.btn_ir_intent)
         val botonIrBASE = findViewById<Button>(R.id.btn_BDD)
+        val botonIrRecyclerView = findViewById<Button>(R.id.btn_ir_recycler_view)
+
+        botonIrRecyclerView.setOnClickListener { abrirActividad(GRecyclerView::class.java) }
 
         botonIrBASE.setOnClickListener { abrirActividad(ControlBase::class.java) }
         botonIrACicloVida.setOnClickListener { abrirActividad(ACicloVida::class.java) }
