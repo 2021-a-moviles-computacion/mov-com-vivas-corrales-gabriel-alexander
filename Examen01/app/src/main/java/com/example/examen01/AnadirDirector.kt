@@ -105,7 +105,15 @@ class AnadirDirector : AppCompatActivity() {
         return if (TextUtils.isEmpty(nombre) || TextUtils.isEmpty(nacionalidad) || TextUtils.isEmpty(numPelis) || fecha.text.equals("MM/DD/YYYY")) {
             Toast.makeText(this, "Llene todos los campos", Toast.LENGTH_SHORT).show()
             true
-        } else false
+        } else {
+            if(numPelis.toInt()<1){
+                Toast.makeText(this, "Ingrese valores válidos", Toast.LENGTH_SHORT).show()
+                true
+            }else{
+                false
+            }
+        }
+
     }
 
      private fun abrirActividad(clase: Class<*>) {

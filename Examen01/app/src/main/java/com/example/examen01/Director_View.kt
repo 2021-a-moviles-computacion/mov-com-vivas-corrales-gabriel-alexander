@@ -16,13 +16,16 @@ class Director_View : AppCompatActivity() {
     var posicionItemSeleccionado = 0
     var nombreDirectorSeleccionado = ""
     var idDirectorSeleccionado = 0
+    lateinit var directores :ArrayList<Director>
+    lateinit var adaptador: ArrayAdapter<Director>
+    lateinit var listDirectoresView: ListView
 
     override fun onStart() {
         super.onStart()
         BaseDatos.Tablas = SQLiteHelper(this)
-        val directores = BaseDatos.Tablas!!.consultarTodosDirectores()
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
-        val listDirectoresView = findViewById<ListView>(R.id.listView_Director)
+        directores = BaseDatos.Tablas!!.consultarTodosDirectores()
+        adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
+        listDirectoresView = findViewById(R.id.listView_Director)
         adaptador.notifyDataSetChanged()
         listDirectoresView.adapter = adaptador
     }
@@ -32,11 +35,7 @@ class Director_View : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_director_view)
         BaseDatos.Tablas = SQLiteHelper(this)
-
-        val directores = BaseDatos.Tablas!!.consultarTodosDirectores()
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
-        val listDirectoresView = findViewById<ListView>(R.id.listView_Director)
-        listDirectoresView.adapter = adaptador
+        onStart()
         val botonCrearDirector = findViewById<Button>(R.id.btn_crear_Director)
         val botonVerPelis = findViewById<Button>(R.id.btn_verPelis)
         botonVerPelis.isEnabled = false //Desactivo botón hasta seleccionar
@@ -79,10 +78,7 @@ class Director_View : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
 
         BaseDatos.Tablas = SQLiteHelper(this)
-
-        val directores = BaseDatos.Tablas!!.consultarTodosDirectores()
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, directores)
-        val listDirectoresView = findViewById<ListView>(R.id.listView_Director)
+        onStart()
         val directorSeleccionado = listDirectoresView.getItemAtPosition(posicionItemSeleccionado) as Director
         nombreDirectorSeleccionado = directorSeleccionado.nombre
         idDirectorSeleccionado = directorSeleccionado.id

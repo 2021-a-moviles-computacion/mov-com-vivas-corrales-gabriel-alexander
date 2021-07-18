@@ -16,12 +16,16 @@ class Pelis_View : AppCompatActivity() {
     var tituloPeliSeleccionada = ""
     var nombreDirector = ""
     var idDirector = 0
+    lateinit var peliculas :ArrayList<Pelicula>
+    lateinit var adaptador: ArrayAdapter<Pelicula>
+    lateinit var listPeliculasView: ListView
+
     override fun onStart() {
         super.onStart()
         BaseDatos.Tablas = SQLiteHelper(this)
-        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
-        val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
+        peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
+        adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
+        listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
         adaptador.notifyDataSetChanged()
         listPeliculasView.adapter = adaptador
 
@@ -33,12 +37,8 @@ class Pelis_View : AppCompatActivity() {
         val txtDirector = findViewById<TextView>(R.id.txt_NombreDirectorPeli)
         nombreDirector = intent.getStringExtra("nombreDirector").toString()
         idDirector = intent.getIntExtra("idDirector", 0)
-
-        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
         txtDirector.text = nombreDirector
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
-        val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
-        listPeliculasView.adapter = adaptador
+        onStart()
         val botonCrearPelicula = findViewById<Button>(R.id.btn_crear_Pelicula)
         botonCrearPelicula.setOnClickListener {
             abrirActividadConParametros(nombreDirector, idDirector, "", AnadirPelicula::class.java)
@@ -69,10 +69,7 @@ class Pelis_View : AppCompatActivity() {
     override fun onContextItemSelected(item: MenuItem): Boolean {
 
         BaseDatos.Tablas = SQLiteHelper(this)
-
-        val peliculas = BaseDatos.Tablas!!.consultarTodasPeliculasDeUnDirector(idDirector)
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_list_item_1, peliculas)
-        val listPeliculasView = findViewById<ListView>(R.id.listview_Peliculas)
+        onStart()
         val peliculaSeleccionada = listPeliculasView.getItemAtPosition(posicionItemSeleccionado) as Pelicula
         tituloPeliSeleccionada = peliculaSeleccionada.titulo
         listPeliculasView.adapter = adaptador
