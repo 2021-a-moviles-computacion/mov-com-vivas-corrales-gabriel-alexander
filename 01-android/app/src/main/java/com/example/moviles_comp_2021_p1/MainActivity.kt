@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         val botonIrIntent = findViewById<Button>(R.id.btn_ir_intent)
         val botonIrBASE = findViewById<Button>(R.id.btn_BDD)
         val botonIrRecyclerView = findViewById<Button>(R.id.btn_ir_recycler_view)
+        val botonIrHTTP = findViewById<Button>(R.id.btn_ir_http)
+        botonIrHTTP.setOnClickListener { abrirActividad(HHttpActivity::class.java) }
 
         botonIrRecyclerView.setOnClickListener { abrirActividad(GRecyclerView::class.java) }
 
