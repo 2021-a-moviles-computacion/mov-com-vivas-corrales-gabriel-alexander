@@ -2,6 +2,7 @@
     <string name="app_name">Spotify_v1</string>
     <string name="create_account">CREATE ACCOUNT</string>
     <string name="log_in">LOGIN IN</string>
+    <string name="your_library">Your Library</string>
     <string name="already_user_string">Already a user?</string>
     <string name="millionsSongs">Millions of songs. Free on Spotify.</string>
     <string name="search">Search</string>
