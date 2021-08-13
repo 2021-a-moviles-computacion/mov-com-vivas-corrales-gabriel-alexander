@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme_Spotify">
         <activity
+            android:name=".Reproductor"
+            android:exported="true" />
+        <activity
             android:name=".HomeLibrarySearch"
             android:exported="true" />
         <activity
