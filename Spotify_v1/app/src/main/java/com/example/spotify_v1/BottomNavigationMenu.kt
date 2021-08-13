@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationMenu : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_navigation_menu)
@@ -29,7 +30,7 @@ class BottomNavigationMenu : AppCompatActivity() {
         }
     }
 
-    private fun establecerFragmento(fragment: Fragment) =
+    fun establecerFragmento(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.frame_container, fragment).commit()
         }

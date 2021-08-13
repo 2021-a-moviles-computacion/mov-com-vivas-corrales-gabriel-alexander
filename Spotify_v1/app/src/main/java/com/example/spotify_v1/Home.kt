@@ -67,7 +67,7 @@ class Home : Fragment() {
         val fragmentHome = inflater.inflate(R.layout.fragment_home, container, false)
         recyclerWelcome = fragmentHome.findViewById(R.id.welcome_recycler)
         recyclerJumpBack = fragmentHome.findViewById(R.id.jump_back_recycler)
-        recyclerRecentlyPlayed = fragmentHome.findViewById(R.id.recently_played_recycler)
+        recyclerRecentlyPlayed = fragmentHome.findViewById(R.id.top_genres_recycler)
         recyclerMadeForU = fragmentHome.findViewById(R.id.made_for_u_recycler)
         recyclerTopMixes = fragmentHome.findViewById(R.id.top_mixes_recycler)
         recyclerUniquely = fragmentHome.findViewById(R.id.uniquely_recycler)

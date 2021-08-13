@@ -17,8 +17,8 @@ class AdaptadorWelcome(private val actividad: Home, private val listaItemsWelcom
         val btnItem: CardView
 
         init {
-            nombreItem = view.findViewById(R.id.txt_Welcome_home)
-            imagenItem = view.findViewById(R.id.img_item_Welcome_home)
+            nombreItem = view.findViewById(R.id.txt_tituloCancionPlaylist)
+            imagenItem = view.findViewById(R.id.img_cancionPlaylist)
             btnItem = view.findViewById(R.id.cardview_item_Welcomehome)
         }
     }

@@ -1,14 +1,16 @@
 package com.example.spotify_v1
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+
+
 
 class AdaptadorNormalHome (private val actividad: Home, private val listaItemsHome: List<*>, private val recyclerView: RecyclerView) :
     RecyclerView.Adapter<AdaptadorNormalHome.MyViewHolder>() {
@@ -22,7 +24,13 @@ class AdaptadorNormalHome (private val actividad: Home, private val listaItemsHo
             nombreItem = view.findViewById(R.id.txt_itemCard_home)
             imagenItem = view.findViewById(R.id.img_item_home)
             btnItem = view.findViewById(R.id.cardview_item_home)
-            btnItem.setOnClickListener {  }
+
+            btnItem.setOnClickListener {
+                val cambioFragment = DetallesHome()
+                actividad.activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frame_container,cambioFragment).commit()
+                }
+            }
         }
     }
 
@@ -46,6 +54,5 @@ class AdaptadorNormalHome (private val actividad: Home, private val listaItemsHo
     override fun getItemCount(): Int {
         return listaItemsHome.size
     }
-
 
 }
