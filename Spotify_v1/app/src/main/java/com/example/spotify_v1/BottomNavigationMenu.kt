@@ -10,7 +10,7 @@ class BottomNavigationMenu : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bottom_navigation_menu)
+        setContentView(R.layout.actividad_principal)
         val navegacion = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         val firstFragment = Home()
         val secondFragment = Search()

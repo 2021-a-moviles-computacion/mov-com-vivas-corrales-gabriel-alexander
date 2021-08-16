@@ -3,10 +3,10 @@ package com.example.spotify_v1
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 class AdaptadorPlaylist (private val actividad: DetallesHome, private val listaItemsPlaylist: List<*>, private val recyclerView: RecyclerView) :
@@ -24,12 +24,6 @@ class AdaptadorPlaylist (private val actividad: DetallesHome, private val listaI
             imagenCancionItem = view.findViewById(R.id.img_cancionPlaylist)
             btnItem = view.findViewById(R.id.layout_cancionPlaylist)
 
-//            btnItem.setOnClickListener {
-//                val cambioFragment = DetallesHome()
-//                actividad.activity?.supportFragmentManager?.beginTransaction()?.apply {
-//                    replace(R.id.frame_container,cambioFragment).commit()
-//                }
-//            }
         }
     }
 
