@@ -14,6 +14,12 @@ class AdaptadorSearch (private val actividad: Search, private val listaItemsSear
 
         init {
             btnItem = view.findViewById(R.id.btn_item_search)
+            btnItem.setOnClickListener {
+                val cambioFragment = LibreriaGenero()
+                actividad.activity?.supportFragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frame_container,cambioFragment).commit()
+                }
+            }
         }
     }
 

@@ -12,6 +12,9 @@
     <string name="saludo">Good morning</string>
     <string name="shows_to_try">Shows to try</string>
     <string name="jump_back">Jump back in</string>
+    <string name="popular">Popular</string>
+    <string name="popular_playlist">Popular playlist</string>
+    <string name="albums">Albums</string>
     <string name="recently_played">Recently played</string>
     <string name="made_for">Made For Elver</string>
     <string name="your_top_mixes">Your top mixes</string>

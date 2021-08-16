@@ -1,13 +1,11 @@
 package com.example.spotify_v1
 
 import android.os.Bundle
-import android.text.TextUtils.replace
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,14 +13,15 @@ import androidx.recyclerview.widget.RecyclerView
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-var recyclerPlaylist : RecyclerView? = null
-var btnBack: androidx.appcompat.widget.Toolbar?= null
+var recyclerPopular: RecyclerView? = null
+var recyclerAlbums: RecyclerView? = null
+private var btnBackArtist: androidx.appcompat.widget.Toolbar?= null
 /**
  * A simple [Fragment] subclass.
- * Use the [DetallesHome.newInstance] factory method to
+ * Use the [Artist.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DetallesHome : Fragment() {
+class Artist : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -39,35 +38,38 @@ class DetallesHome : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val fragmentHomeDetalles = inflater.inflate(R.layout.fragment_detalles_home, container, false)
-       recyclerPlaylist = fragmentHomeDetalles.findViewById(R.id.recycler_playlist)
-        btnBack = fragmentHomeDetalles.findViewById(R.id.toolbar_detalles_home)
         // Inflate the layout for this fragment
-        return fragmentHomeDetalles
+        val fragmentArtist = inflater.inflate(R.layout.fragment_artist, container, false)
+        recyclerPopular = fragmentArtist.findViewById(R.id.recycler_popular)
+        recyclerAlbums = fragmentArtist.findViewById(R.id.recycler_albums)
+        btnBackArtist = fragmentArtist.findViewById(R.id.toolbar_Artist)
+        // Inflate the layout for this fragment
+        return fragmentArtist
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val listaItemsPlaylist = arrayListOf<Cancion>()
-        for (i in 1..20) {
-            listaItemsPlaylist.add(Cancion("hola","IMAGEN"))
+        val listaItemsLibrary = arrayListOf<Cancion>()
+        val listaItemsAlbums = arrayListOf<Cancion>()
+        for (i in 1..5) {
+            listaItemsLibrary.add(Cancion("hola","IMAGEN"))
         }
-
+        for (i in 1..10) {
+            listaItemsAlbums.add(Cancion("hola","IMAGEN"))
+        }
         //DEBO CREAR UNA LISTA PARA CADA RECYCLER
-       iniciarRecyclerView(listaItemsPlaylist,this, recyclerPlaylist!!,AdaptadorPlaylist(this,listaItemsPlaylist, recyclerPlaylist!!))
+        iniciarRecyclerView(listaItemsLibrary,this, recyclerPopular!!,AdaptadorPopulares(this,listaItemsLibrary, recyclerPopular!!))
+        iniciarRecyclerView(listaItemsAlbums,this, recyclerAlbums!!,AdaptadorAlbumes(this,listaItemsAlbums, recyclerAlbums!!))
 
         //BOTON BACK
-        btnBack?.setNavigationOnClickListener {
-            val cambioFragment = Home()
+        btnBackArtist?.setNavigationOnClickListener {
+            val cambioFragment = Library()
             this.activity?.supportFragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frame_container,cambioFragment).commit()
             }
         }
     }
 
-    fun iniciarRecyclerView( lista: List<*>,actividad:DetallesHome, recyclerView: RecyclerView, adaptador:RecyclerView.Adapter<*>){
+    fun iniciarRecyclerView(lista: List<*>, actividad: Artist, recyclerView: RecyclerView, adaptador:RecyclerView.Adapter<*>){
         recyclerView.adapter = adaptador
         recyclerView.itemAnimator= androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = LinearLayoutManager(actividad.context, LinearLayoutManager.VERTICAL, false)
@@ -81,19 +83,16 @@ class DetallesHome : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DetallesHome.
+         * @return A new instance of fragment Artist.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DetallesHome().apply {
+            Artist().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
                 }
             }
     }
-
-
-
 }

@@ -26,24 +26,33 @@
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/drawable/ic_queue.xml" value="0.34864864864864864" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/drawable/ic_search.xml" value="0.2596491228070175" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/drawable/ic_speaker.xml" value="0.34864864864864864" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/actividad_principal.xml" value="0.25" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/activity_bottom_navigation_menu.xml" value="0.33" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/activity_home.xml" value="0.3175213675213675" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/activity_home_library_search.xml" value="0.225" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/activity_inicio.xml" value="0.296195652173913" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/activity_reproductor.xml" value="0.25" />
-        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/artist_item.xml" value="0.49693251533742333" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/artist_item.xml" value="0.2" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_artist.xml" value="0.33" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_detalles_home.xml" value="0.33" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_library.xml" value="0.27504244482173174" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_libreria_genero.xml" value="0.14241486068111456" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_scrolling.xml" value="0.23508771929824562" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/fragment_search.xml" value="0.2" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_album.xml" value="0.5" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_artist.xml" value="0.1551796157059315" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_home_layout.xml" value="0.25" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_libreria.xml" value="0.5" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_playlist.xml" value="0.33" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_popular.xml" value="0.5" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_recently_played.xml" value="0.29528985507246375" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_search.xml" value="0.33" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/item_welcome.xml" value="0.3020833333333333" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/login.xml" value="0.25" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/layout/toolbar.xml" value="0.2658119658119658" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/menu/bottom_navigation.xml" value="0.25" />
+        <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/menu/top_menu.xml" value="0.2658119658119658" />
         <entry key="..\:/Universidad/SEPTIMO/MOVILES/Repositorio/mov-com-vivas-corrales-gabriel-alexander/Spotify_v1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2596491228070175" />
       </map>
     </option>
