@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.example.firebaseuno.dto.FirestoreUsuarioDto
@@ -23,6 +24,28 @@ class MainActivity : AppCompatActivity() {
         botonLogin.setOnClickListener {
             llamarLoginUsuario()
         }
+        val botonLogout = findViewById<Button>(R.id.btn_logout)
+        botonLogout.setOnClickListener {
+            solicitarSalirAplicativo()
+        }
+
+        val botonProducto = findViewById<Button>(R.id.btn_producto)
+        botonProducto.setOnClickListener {
+            val intent = Intent(this,CProducto::class.java)
+            startActivity(intent)
+        }
+
+        val botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
+        botonRestaurante.setOnClickListener {
+            val intent = Intent(this,DRestaurante::class.java)
+            startActivity(intent)
+        }
+        val botonPedido = findViewById<Button>(R.id.btn_pedido)
+        botonPedido.setOnClickListener {
+            val intent = Intent(this,EOrdenes::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun llamarLoginUsuario() {
@@ -116,6 +139,7 @@ class MainActivity : AppCompatActivity() {
                         BAuthUsuario.usuario = BUsuarioFirebase(
                             usuarioCargado.uid, usuarioCargado.email, usuarioCargado.roles
                         )
+                        setearBienvenida()
                     }
                     Log.i("firebase-firestore", "Usuario Cargado")
                 }
@@ -126,12 +150,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun solicitarSalirAplicativo(){
+        AuthUI.getInstance().signOut(this).addOnCompleteListener {
+            BAuthUsuario.usuario=null
+            setearBienvenida()
+        }
+    }
+
+
     fun setearBienvenida(){
         val txtViewBienvenida = findViewById<TextView>(R.id.tv_bienvenida)
+        val botonLogin = findViewById<Button>(R.id.btn_login)
+        val botonLogout = findViewById<Button>(R.id.btn_logout)
+        val botonProducto = findViewById<Button>(R.id.btn_producto)
+        val botonRestaurante = findViewById<Button>(R.id.btn_restaurante)
+        val botonPedido = findViewById<Button>(R.id.btn_pedido)
         if(BAuthUsuario.usuario !=null){
             txtViewBienvenida.text = "Bienvenido ${BAuthUsuario.usuario?.email}"
+            botonLogin.visibility = View.INVISIBLE
+            botonLogout.visibility = View.VISIBLE
+            botonProducto.visibility = View.VISIBLE
+            botonRestaurante.visibility = View.VISIBLE
+            botonPedido.visibility = View.VISIBLE
         }else{
-            txtViewBienvenida.text = "Ingresa plox x2"
+            txtViewBienvenida.text = "Ingresa AL APLICATIVO"
+            botonLogin.visibility = View.VISIBLE
+            botonLogout.visibility = View.INVISIBLE
+            botonProducto.visibility = View.INVISIBLE
+            botonRestaurante.visibility = View.INVISIBLE
+            botonPedido.visibility = View.INVISIBLE
         }
     }
 }

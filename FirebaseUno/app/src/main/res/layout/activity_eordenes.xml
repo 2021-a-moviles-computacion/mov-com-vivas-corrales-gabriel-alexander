@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EOrdenes">
+
+
+    <TextView
+        android:id="@+id/tv_seleccionar_restaurante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Restaurantes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/sp_restaurantes"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:textColor="#000000"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_seleccionar_restaurante"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_seleccionar_restaurante"
+        app:layout_constraintTop_toBottomOf="@+id/tv_seleccionar_restaurante"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Spinner
+        android:id="@+id/sp_producto"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:spinnerMode="dropdown"
+        android:textColor="#000000"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_restaurantes"
+        app:layout_constraintStart_toStartOf="@+id/sp_restaurantes"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/btn_anadir_lista_producto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="ADD"
+        app:layout_constraintBottom_toBottomOf="@+id/sp_producto"
+        app:layout_constraintStart_toEndOf="@+id/sp_producto"
+        app:layout_constraintTop_toTopOf="@+id/sp_producto"
+        app:layout_constraintVertical_bias="0.47" />
+
+    <EditText
+        android:id="@+id/et_cantidad_producto"
+        android:layout_width="236dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Ingrese Cantidad"
+        android:inputType="number"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/sp_producto"
+        app:layout_constraintHorizontal_bias="0.311"
+        app:layout_constraintStart_toStartOf="@+id/sp_producto"
+        app:layout_constraintTop_toBottomOf="@+id/sp_producto"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tv_lista_productos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Lista de Productos"
+        app:layout_constraintEnd_toEndOf="@+id/et_cantidad_producto"
+        app:layout_constraintHorizontal_bias="0.871"
+        app:layout_constraintStart_toStartOf="@+id/et_cantidad_producto"
+        app:layout_constraintTop_toBottomOf="@+id/et_cantidad_producto" />
+
+    <Button
+        android:id="@+id/btn_completar_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="COMPLETAR PEDIDO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_total" />
+
+    <TextView
+        android:id="@+id/tx_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="TOTAL:"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/lv_lista_productos"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="@+id/lv_lista_productos"
+        app:layout_constraintTop_toBottomOf="@+id/lv_lista_productos" />
+
+    <TextView
+        android:id="@+id/txt_mostrarTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="112dp"
+        android:text="0.0"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/tx_total"
+        app:layout_constraintStart_toEndOf="@+id/tx_total"
+        app:layout_constraintTop_toTopOf="@+id/tx_total"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ListView
+        android:id="@+id/lv_lista_productos"
+        android:layout_width="391dp"
+        android:layout_height="249dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/txt_cabecera"
+        app:layout_constraintStart_toStartOf="@+id/txt_cabecera"
+        app:layout_constraintTop_toBottomOf="@+id/txt_cabecera">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/txt_cabecera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/tv_lista_productos"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/tv_lista_productos"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lista_productos" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Productos"
+        app:layout_constraintEnd_toEndOf="@+id/sp_restaurantes"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sp_restaurantes"
+        app:layout_constraintTop_toBottomOf="@+id/sp_restaurantes" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_mostrarTotal"
+        app:layout_constraintStart_toEndOf="@+id/txt_mostrarTotal"
+        app:layout_constraintTop_toTopOf="@+id/txt_mostrarTotal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
