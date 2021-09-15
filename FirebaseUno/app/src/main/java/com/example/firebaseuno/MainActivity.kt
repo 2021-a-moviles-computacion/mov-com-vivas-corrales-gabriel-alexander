@@ -46,6 +46,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val botonIrMapa = findViewById<Button>(R.id.btn_ir_mapa)
+        botonIrMapa.setOnClickListener {
+            val intent = Intent(this,FMapsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun llamarLoginUsuario() {
