@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.firebaseuno">
-
+    package="com.example.examen02">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -15,8 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FirebaseUno">
-
+        android:theme="@style/Theme.Examen02">
+        <activity
+            android:name=".Ubicacion"
+            android:exported="true" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -30,19 +31,16 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".FMapsActivity"
+            android:name=".AnadirPelicula"
             android:exported="true" />
         <activity
-            android:name=".EOrdenes"
+            android:name=".Pelis_View"
             android:exported="true" />
         <activity
-            android:name=".DRestaurante"
+            android:name=".AnadirDirector"
             android:exported="true" />
         <activity
-            android:name=".CProducto"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Director_View"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
